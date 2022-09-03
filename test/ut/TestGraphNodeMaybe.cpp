@@ -21,8 +21,11 @@ namespace {
 
     using TupleCb = std::tuple<NodeCb<Node1>, NodeCb<Node>>;
 
-    using MaybeType = GraphNodeMaybe<Cond, Node>;
+    using MaybeType = __g_MAYBE(Cond, Node);
     using Maybe = typename MaybeType::InstanceType<TupleCb>;
+
+    static_assert(__g_MAYBE(Cond, Node)::NODE_LIST == holo::list_t<Node>);
+    static_assert(__g_MAYBE(Cond, Node1)::NODE_LIST == holo::list_t<Node1>);
 }
 
 SCENARIO("TestGraphNodeMaybe") {

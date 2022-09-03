@@ -13,6 +13,9 @@ namespace {
 
     using TupleCb = std::tuple<NodeCb<Node1>, NodeCb<Node>>;
     using NodeRef = typename GraphNodeRef<Node>::InstanceType<TupleCb>;
+
+    static_assert(GraphNodeRef<Node>::NODE_LIST == holo::list_t<Node>);
+    static_assert(GraphNodeRef<Node1>::NODE_LIST == holo::list_t<Node1>);
 }
 
 SCENARIO("TestGraphNodeRef") {

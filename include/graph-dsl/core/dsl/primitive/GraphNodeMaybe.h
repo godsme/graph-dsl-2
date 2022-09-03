@@ -7,6 +7,7 @@
 
 #include <graph-dsl/core/dsl/primitive/GraphNodeTrait.h>
 #include <graph-dsl/Status.h>
+#include <maco/basic.h>
 #include <optional>
 
 namespace graph_dsl {
@@ -14,7 +15,9 @@ namespace graph_dsl {
 
     template<typename COND, typename NODE_LIKE>
     struct GraphNodeMaybe {
+    private:
         using DecoratedNode = typename GraphNodeTrait<NODE_LIKE>::Type;
+    public:
         constexpr static auto NODE_LIST = DecoratedNode::NODE_LIST;
 
         template<typename CB_TUPLE>
@@ -60,5 +63,7 @@ namespace graph_dsl {
         using Type = GraphNodeMaybe<COND, NODE_LIKE>;
     };
 }
+
+#define __g_MAYBE(...) __MACO_template_type(graph_dsl::GraphNodeMaybe<__VA_ARGS__>)
 
 #endif //GRAPH_DSL_2_776A733183E6411199F785D220F1CD54
