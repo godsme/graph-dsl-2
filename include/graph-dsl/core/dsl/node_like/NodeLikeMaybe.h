@@ -5,7 +5,7 @@
 #ifndef GRAPH_DSL_2_776A733183E6411199F785D220F1CD54
 #define GRAPH_DSL_2_776A733183E6411199F785D220F1CD54
 
-#include <graph-dsl/core/dsl/primitive/GraphNodeTrait.h>
+#include <graph-dsl/core/dsl/node_like/NodeLikeTrait.h>
 #include <graph-dsl/Status.h>
 #include <maco/basic.h>
 #include <optional>
@@ -14,9 +14,9 @@ namespace graph_dsl {
     struct GraphContext;
 
     template<typename COND, typename NODE_LIKE>
-    struct GraphNodeMaybe {
+    struct NodeLikeMaybe {
     private:
-        using DecoratedNode = typename GraphNodeTrait<NODE_LIKE>::Type;
+        using DecoratedNode = typename NodeLikeTrait<NODE_LIKE>::Type;
     public:
         constexpr static auto NODE_LIST = DecoratedNode::NODE_LIST;
 
@@ -59,11 +59,11 @@ namespace graph_dsl {
     };
 
     template<typename COND, typename NODE_LIKE>
-    struct GraphNodeTrait<GraphNodeMaybe<COND, NODE_LIKE>> {
-        using Type = GraphNodeMaybe<COND, NODE_LIKE>;
+    struct NodeLikeTrait<NodeLikeMaybe<COND, NODE_LIKE>> {
+        using Type = NodeLikeMaybe<COND, NODE_LIKE>;
     };
 }
 
-#define __g_MAYBE(...) __MACO_template_type(graph_dsl::GraphNodeMaybe<__VA_ARGS__>)
+#define __g_MAYBE(...) __MACO_template_type(graph_dsl::NodeLikeMaybe<__VA_ARGS__>)
 
 #endif //GRAPH_DSL_2_776A733183E6411199F785D220F1CD54

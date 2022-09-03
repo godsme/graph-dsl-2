@@ -7,7 +7,7 @@
 
 namespace graph_dsl {
     template<typename T, typename = void>
-    struct GraphNodeTrait;
+    struct NodeLikeTrait;
 }
 
 #endif //GRAPH_DSL_2_4B7045A7D823474585146064F4510BDF

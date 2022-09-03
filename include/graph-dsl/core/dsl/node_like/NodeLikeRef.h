@@ -2,10 +2,10 @@
 // Created by Darwin Yuan on 2022/7/3.
 //
 
-#ifndef GRAPH_B336B490BFCD4CC1BCB8267D5467D155
-#define GRAPH_B336B490BFCD4CC1BCB8267D5467D155
+#ifndef GRAPH_37B623D6E7FF463B8066085002964996
+#define GRAPH_37B623D6E7FF463B8066085002964996
 
-#include <graph-dsl/core/dsl/primitive/GraphNodeTrait.h>
+#include <graph-dsl/core/dsl/node_like/NodeLikeTrait.h>
 #include <graph-dsl/core/dsl/NodeIndex.h>
 #include <graph-dsl/Status.h>
 #include <holo/holo.h>
@@ -16,7 +16,7 @@ namespace graph_dsl {
     struct NodeSignature {};
 
     template <typename NODE>
-    struct GraphNodeRef {
+    struct NodeLikeRef {
         constexpr static auto NODE_LIST = holo::list_t<NODE>;
 
         template<typename CB_TUPLE>
@@ -46,9 +46,9 @@ namespace graph_dsl {
     };
 
     template<typename NODE>
-    struct GraphNodeTrait<NODE, std::enable_if_t<std::is_base_of_v<NodeSignature, NODE>>> {
-        using Type = GraphNodeRef<NODE>;
+    struct NodeLikeTrait<NODE, std::enable_if_t<std::is_base_of_v<NodeSignature, NODE>>> {
+        using Type = NodeLikeRef<NODE>;
     };
 }
 
-#endif //GRAPH_B336B490BFCD4CC1BCB8267D5467D155
+#endif //GRAPH_37B623D6E7FF463B8066085002964996

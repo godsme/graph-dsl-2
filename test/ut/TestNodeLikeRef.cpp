@@ -1,7 +1,7 @@
 //
 // Created by Darwin Yuan on 2022/9/4.
 //
-#include <graph-dsl/core/dsl/primitive/GraphNodeRef.h>
+#include <graph-dsl/core/dsl/node_like/NodeLikeRef.h>
 #include <graph-dsl/core/runtime/NodeCb.h>
 #include <catch.hpp>
 
@@ -12,10 +12,10 @@ namespace {
     struct Node1 : NodeSignature {};
 
     using TupleCb = std::tuple<NodeCb<Node1>, NodeCb<Node>>;
-    using NodeRef = typename GraphNodeRef<Node>::InstanceType<TupleCb>;
+    using NodeRef = typename NodeLikeRef<Node>::InstanceType<TupleCb>;
 
-    static_assert(GraphNodeRef<Node>::NODE_LIST == holo::list_t<Node>);
-    static_assert(GraphNodeRef<Node1>::NODE_LIST == holo::list_t<Node1>);
+    static_assert(NodeLikeRef<Node>::NODE_LIST == holo::list_t<Node>);
+    static_assert(NodeLikeRef<Node1>::NODE_LIST == holo::list_t<Node1>);
 }
 
 SCENARIO("TestGraphNodeRef") {

@@ -1,8 +1,8 @@
 //
 // Created by Darwin Yuan on 2022/7/3.
 //
-#include <graph-dsl/core/dsl/primitive/GraphNodeMaybe.h>
-#include <graph-dsl/core/dsl/primitive/GraphNodeRef.h>
+#include <graph-dsl/core/dsl/node_like/NodeLikeMaybe.h>
+#include <graph-dsl/core/dsl/node_like/NodeLikeRef.h>
 #include <graph-dsl/core/runtime/NodeCb.h>
 #include <catch.hpp>
 
