@@ -28,7 +28,8 @@ set(graph_dsl
 add_executable(graph_ut
         ${graph_dsl}
         third-party/catch.cpp
-        test/ut/TestGraphNodeRef.cpp)
+        test/ut/TestGraphNodeRef.cpp
+        test/ut/TestGraphNodeMaybe.cpp)
 
 set(nano-caf-lib ${CMAKE_CURRENT_SOURCE_DIR}/../nano-caf-2/cmake-build-release/libnano_caf.a)
 

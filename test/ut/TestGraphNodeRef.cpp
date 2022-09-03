@@ -9,11 +9,9 @@ using namespace graph_dsl;
 
 namespace {
     struct Node : NodeSignature {};
-
     struct Node1 : NodeSignature {};
 
     using TupleCb = std::tuple<NodeCb<Node1>, NodeCb<Node>>;
-
     using NodeRef = typename GraphNodeRef<Node>::InstanceType<TupleCb>;
 }
 

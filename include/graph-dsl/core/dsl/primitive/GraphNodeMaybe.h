@@ -20,14 +20,12 @@ namespace graph_dsl {
         template<typename CB_TUPLE>
         struct InstanceType {
             auto Build(GraphContext& context) -> Status {
-                return COND::Satisfied(context).with_value([&](auto satisfied) {
-                    if(satisfied) {
-                        return DoBuild(context);
-                    } else {
-                        Release(context);
-                        return Status::OK;
-                    }
-                });
+                if(COND::Satisfied(context)) {
+                    return DoBuild(context);
+                } else {
+                    Release(context);
+                    return Status::OK;
+                }
             }
 
             auto Release(GraphContext& context) {
