@@ -20,7 +20,7 @@ namespace graph_dsl {
     public:
         constexpr static auto NODE_LIST = DecoratedNode::NODE_LIST;
 
-        template<typename CB_TUPLE>
+        template<typename NODE_CB_TUPLE>
         struct InstanceType {
             auto Build(GraphContext& context) -> Status {
                 if(COND::Satisfied(context)) {
@@ -53,7 +53,7 @@ namespace graph_dsl {
             }
 
         private:
-            using NodeType = typename DecoratedNode::template InstanceType<CB_TUPLE>;
+            using NodeType = typename DecoratedNode::template InstanceType<NODE_CB_TUPLE>;
             std::optional<NodeType> m_node;
         };
     };

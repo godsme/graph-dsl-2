@@ -19,9 +19,9 @@ namespace graph_dsl {
     struct NodeLikeRef {
         constexpr static auto NODE_LIST = holo::list_t<NODE>;
 
-        template<typename CB_TUPLE>
-        struct InstanceType : NodeIndex<NODE, CB_TUPLE> {
-            using Parent = NodeIndex<NODE, CB_TUPLE>;
+        template<typename NODE_CB_TUPLE>
+        struct InstanceType : NodeIndex<NODE, NODE_CB_TUPLE> {
+            using Parent = NodeIndex<NODE, NODE_CB_TUPLE>;
 
             auto Build(GraphContext& context) -> Status {
                 if(!m_enabled) {
