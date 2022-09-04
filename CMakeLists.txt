@@ -14,6 +14,7 @@ include_directories(
 set(graph_dsl
         include/graph-dsl/Status.h
         include/graph-dsl/util/TupleElementIndex.h
+        include/graph-dsl/util/TupleForEach.h
         include/graph-dsl/core/GraphContext.h
         include/graph-dsl/core/dsl/GraphPort.h
         include/graph-dsl/core/runtime/NodeCb.h
@@ -24,6 +25,7 @@ set(graph_dsl
         include/graph-dsl/core/dsl/node_like/NodeLikeRef.h
         include/graph-dsl/core/dsl/node_like/NodeLikeMaybe.h
         include/graph-dsl/core/dsl/node_like/NodeLikeEither.h
+        include/graph-dsl/core/dsl/node_like/NodeLikeFork.h
         )
 
 add_executable(graph_ut
@@ -31,7 +33,8 @@ add_executable(graph_ut
         third-party/catch.cpp
         test/ut/TestNodeLikeRef.cpp
         test/ut/TestNodeLikeMaybe.cpp
-        test/ut/TestNodeLikeEither.cpp)
+        test/ut/TestNodeLikeEither.cpp
+        test/ut/TestNodeLikeFork.cpp)
 
 set(nano-caf-lib ${CMAKE_CURRENT_SOURCE_DIR}/../nano-caf-2/cmake-build-release/libnano_caf.a)
 
