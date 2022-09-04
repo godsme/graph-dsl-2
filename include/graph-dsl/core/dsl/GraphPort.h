@@ -6,10 +6,11 @@
 #define GRAPH_DA38DD99521046FB99DF8E6597BBA9A1
 
 #include <graph-dsl/core/dsl/node_like/NodeLikeTrait.h>
-#include <graph-dsl/core/GraphContext.h>
 #include <graph-dsl/Status.h>
 
 namespace graph_dsl {
+    struct GraphContext;
+
     template<typename T>
     struct GraphPort;
 
@@ -18,7 +19,7 @@ namespace graph_dsl {
         using NodeLikeType = typename NodeLikeTrait<NODE_LIKE>::Type;
         constexpr static auto NODE_LIST = NODE_LIKE::NODE_LIST;
 
-        template<typename TUPLE>
+        template<typename NODE_CB_TUPLE>
         struct InstanceType {
             auto Enabled() -> bool { return m_downStreamNode.Enabled(); }
 
@@ -31,7 +32,7 @@ namespace graph_dsl {
             }
 
         private:
-            typename NodeLikeType::template InstanceType<TUPLE>  m_downStreamNode;
+            typename NodeLikeType::template InstanceType<NODE_CB_TUPLE>  m_downStreamNode;
         };
     };
 }

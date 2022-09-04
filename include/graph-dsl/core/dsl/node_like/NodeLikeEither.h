@@ -15,7 +15,7 @@ namespace graph_dsl {
     struct GraphContext;
 
     template<typename COND, typename NODE_LIKE_1, typename NODE_LIKE_2>
-    struct NodeLikeEither {
+    struct NodeLikeEither final {
         using DecoratedNode1 = typename NodeLikeTrait<NODE_LIKE_1>::Type;
         using DecoratedNode2 = typename NodeLikeTrait<NODE_LIKE_2>::Type;
 

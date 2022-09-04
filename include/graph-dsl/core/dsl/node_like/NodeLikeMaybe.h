@@ -14,7 +14,7 @@ namespace graph_dsl {
     struct GraphContext;
 
     template<typename COND, typename NODE_LIKE>
-    struct NodeLikeMaybe {
+    struct NodeLikeMaybe final {
     private:
         using DecoratedNode = typename NodeLikeTrait<NODE_LIKE>::Type;
     public:

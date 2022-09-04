@@ -14,13 +14,13 @@ namespace graph_dsl::detail {
 
     template<typename T, template<typename> typename F, int I, class H, class... Tail>
     struct TupleElementByType<T, std::tuple<H, Tail...>, F, I,
-            std::enable_if_t<std::is_same_v<T, typename F<H>::type>>> {
+            std::enable_if_t<std::is_same_v<T, typename F<H>::Type>>> {
         constexpr static int INDEX = I;
     };
 
     template<typename T, template<typename> typename F, int I, class H, class... Tail>
     struct TupleElementByType<T, std::tuple<H, Tail...>, F, I,
-            std::enable_if_t<!std::is_same_v<T, typename F<H>::type>>> {
+            std::enable_if_t<!std::is_same_v<T, typename F<H>::Type>>> {
         constexpr static int INDEX = TupleElementByType<T, std::tuple<Tail...>, F, I + 1>::INDEX;
     };
 

@@ -16,7 +16,7 @@ namespace graph_dsl {
     struct NodeSignature {};
 
     template <typename NODE>
-    struct NodeLikeRef {
+    struct NodeLikeRef final {
         constexpr static auto NODE_LIST = holo::list_t<NODE>;
 
         template<typename NODE_CB_TUPLE>

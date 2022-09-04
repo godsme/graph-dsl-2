@@ -14,7 +14,7 @@ namespace graph_dsl {
     struct GraphContext;
 
     template<typename ... NODEs_LIKE>
-    struct NodeLikeFork {
+    struct NodeLikeFork final {
         constexpr static auto NODE_LIST =
                   holo::make_list(NodeLikeTrait<NODEs_LIKE>::Type::NODE_LIST...)
                 | holo::flatten();

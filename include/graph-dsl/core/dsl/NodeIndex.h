@@ -14,7 +14,7 @@ namespace graph_dsl {
     template <typename NODE, typename NODES>
     struct NodeIndex {
     private:
-        template<typename T> struct Trait { using type = typename T::NodeType; };
+        template<typename T> struct Trait { using Type = typename T::NodeType; };
         constexpr static int INDEX = TupleElementIndex<NODE, NODES, Trait>;
         static_assert(INDEX >= 0, "no type in tuple");
 
