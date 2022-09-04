@@ -5,7 +5,7 @@
 #ifndef GRAPH_DA38DD99521046FB99DF8E6597BBA9A1
 #define GRAPH_DA38DD99521046FB99DF8E6597BBA9A1
 
-#include <graph-dsl/core/dsl/primitive/GraphNodeTrait.h>
+#include <graph-dsl/core/dsl/node_like/NodeLikeTrait.h>
 #include <graph-dsl/core/GraphContext.h>
 #include <graph-dsl/Status.h>
 
@@ -15,7 +15,7 @@ namespace graph_dsl {
 
     template<typename PORT, typename NODE_LIKE>
     struct GraphPort<auto (PORT) -> NODE_LIKE> final {
-        using NodeLikeType = typename GraphNodeTrait<NODE_LIKE>::Type;
+        using NodeLikeType = typename NodeLikeTrait<NODE_LIKE>::Type;
         constexpr static auto NODE_LIST = NODE_LIKE::NODE_LIST;
 
         template<typename TUPLE>

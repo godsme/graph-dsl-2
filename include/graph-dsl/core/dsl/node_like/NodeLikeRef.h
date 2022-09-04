@@ -23,6 +23,8 @@ namespace graph_dsl {
         struct InstanceType : NodeIndex<NODE, NODE_CB_TUPLE> {
             using Parent = NodeIndex<NODE, NODE_CB_TUPLE>;
 
+            auto Enabled() const -> bool { return m_enabled; }
+
             auto Build(GraphContext& context) -> Status {
                 if(!m_enabled) {
                     Parent::GetNode(context).AddRef();
@@ -37,9 +39,6 @@ namespace graph_dsl {
                     m_enabled = false;
                 }
             }
-
-            auto Enabled() const -> bool { return m_enabled; }
-
         private:
             bool m_enabled{false};
         };

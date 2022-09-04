@@ -22,6 +22,8 @@ namespace graph_dsl {
 
         template<typename NODE_CB_TUPLE>
         struct InstanceType {
+            auto Enabled() const -> bool { return m_node.has_value(); }
+
             auto Build(GraphContext& context) -> Status {
                 if(COND::Satisfied(context)) {
                     return DoBuild(context);
@@ -37,8 +39,6 @@ namespace graph_dsl {
                     m_node.reset();
                 }
             }
-
-            auto Enabled() const -> bool { return m_node.has_value(); }
 
         private:
             auto DoBuild(GraphContext& context) -> Status {
