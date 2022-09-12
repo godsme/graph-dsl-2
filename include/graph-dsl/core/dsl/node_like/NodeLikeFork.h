@@ -42,6 +42,43 @@ namespace graph_dsl {
     struct NodeLikeTrait<NodeLikeFork<NODEs_LIKE...>> {
         using Type = NodeLikeFork<NODEs_LIKE...>;
     };
+
+    namespace detail {
+        template <typename ... Ts>
+        struct ToFork {
+            using Type = NodeLikeFork<typename Ts::type...>;
+        };
+
+        template<typename ... Ts>
+        constexpr auto ToNodeLikeFork(holo::type_list<Ts...>) -> auto {
+            using List = decltype(holo::list_t<Ts...> | holo::unique);
+            if constexpr (List::Size == 1) {
+                return typename List::head::type{};
+            } else {
+                return typename List::template export_to<ToFork>::Type{};
+            }
+        }
+    }
+
+    template<typename ... NODEs_LIKE1, typename ... NODEs_LIKE2>
+    constexpr auto NodeLikeMerge(NodeLikeFork<NODEs_LIKE1...>, NodeLikeFork<NODEs_LIKE2...>) -> auto {
+        return detail::ToNodeLikeFork(holo::type_list<NODEs_LIKE1..., NODEs_LIKE2...>{});
+    }
+
+    template<typename ... NODEs_LIKE, typename T>
+    constexpr auto NodeLikeMerge(NodeLikeFork<NODEs_LIKE...>, T) -> auto {
+        return detail::ToNodeLikeFork(holo::type_list<NODEs_LIKE..., T>{});
+    }
+
+    template<typename ... NODEs_LIKE, typename T>
+    constexpr auto NodeLikeMerge(T, NodeLikeFork<NODEs_LIKE...>) -> auto {
+        return detail::ToNodeLikeFork(holo::type_list<T, NODEs_LIKE...>{});
+    }
+
+    template<typename T1, typename T2>
+    constexpr auto NodeLikeMerge(T1, T2) -> auto {
+        return detail::ToNodeLikeFork(holo::type_list<T1, T2>{});
+    }
 }
 
 #define __g_FORK(...) __MACO_template_type(graph_dsl::NodeLikeFork<__VA_ARGS__>)

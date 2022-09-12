@@ -13,20 +13,23 @@ include_directories(
 
 set(graph_dsl
         include/graph-dsl/Status.h
+        include/graph-dsl/util/Assertions.h
         include/graph-dsl/util/TupleElementIndex.h
         include/graph-dsl/util/TupleForEach.h
         include/graph-dsl/core/GraphContext.h
-        include/graph-dsl/core/dsl/GraphPort.h
         include/graph-dsl/core/runtime/NodeCb.h
         include/graph-dsl/core/runtime/DeviceInfo.h
         include/graph-dsl/core/runtime/RootState.h
         include/graph-dsl/core/dsl/NodeIndex.h
+        include/graph-dsl/core/dsl/SubGraph.h
+        include/graph-dsl/core/dsl/GraphNode.h
+        include/graph-dsl/core/dsl/GraphPort.h
         include/graph-dsl/core/dsl/node_like/NodeLikeTrait.h
         include/graph-dsl/core/dsl/node_like/NodeLikeRef.h
         include/graph-dsl/core/dsl/node_like/NodeLikeMaybe.h
         include/graph-dsl/core/dsl/node_like/NodeLikeEither.h
         include/graph-dsl/core/dsl/node_like/NodeLikeFork.h
-        )
+        include/graph-dsl/core/dsl/Graph.h include/graph-dsl/core/dsl/detail/GraphAnalyzer.h include/graph-dsl/core/dsl/SubGraphSelector.h test/ut/TestSubGraph.cpp test/ut/TestGraphNode.cpp test/ut/TestNodesLikeMerge.cpp)
 
 add_executable(graph_ut
         ${graph_dsl}
@@ -34,7 +37,7 @@ add_executable(graph_ut
         test/ut/TestNodeLikeRef.cpp
         test/ut/TestNodeLikeMaybe.cpp
         test/ut/TestNodeLikeEither.cpp
-        test/ut/TestNodeLikeFork.cpp)
+        test/ut/TestNodeLikeFork.cpp test/ut/TestGraph.cpp)
 
 set(nano-caf-lib ${CMAKE_CURRENT_SOURCE_DIR}/../nano-caf-2/cmake-build-release/libnano_caf.a)
 

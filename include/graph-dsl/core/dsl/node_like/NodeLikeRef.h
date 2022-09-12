@@ -20,14 +20,14 @@ namespace graph_dsl {
         constexpr static auto NODE_LIST = holo::list_t<NODE>;
 
         template<typename NODE_CB_TUPLE>
-        struct InstanceType : NodeIndex<NODE, NODE_CB_TUPLE> {
-            using Parent = NodeIndex<NODE, NODE_CB_TUPLE>;
-
+        class InstanceType {
+            using Ref = NodeIndex<NODE, NODE_CB_TUPLE>;
+        public:
             auto Enabled() const -> bool { return m_enabled; }
 
             auto Build(GraphContext& context) -> Status {
                 if(!m_enabled) {
-                    Parent::GetNode(context).AddRef();
+                    Ref::GetNode(context).AddRef();
                     m_enabled = true;
                 }
                 return Status::OK;
@@ -35,7 +35,7 @@ namespace graph_dsl {
 
             auto Release(GraphContext& context) -> void {
                 if(m_enabled) {
-                    Parent::GetNode(context).Release();
+                    Ref::GetNode(context).Release();
                     m_enabled = false;
                 }
             }
