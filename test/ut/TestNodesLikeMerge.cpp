@@ -17,7 +17,8 @@ namespace {
     struct Cond{};
     using NodeFork1 = NodeLikeFork<Node2, Node3>;
     using NodeFork2 = NodeLikeFork<Node2, Node4>;
-    using Either1 = NodeLikeEither<Cond, Node1, Node4>;
+    using Either = NodeLikeEither<Cond, Node1, Node4>;
+    using Maybe = NodeLikeMaybe<Cond, Node2>;
 
     static_assert(std::is_same_v<decltype(NodeLikeMerge(Node1{}, Node2{})), NodeLikeFork<Node1, Node2>>) ;
     static_assert(std::is_same_v<decltype(NodeLikeMerge(Node1{}, Node1{})), Node1>) ;
@@ -25,5 +26,7 @@ namespace {
     static_assert(std::is_same_v<decltype(NodeLikeMerge(NodeFork1{}, Node1{})), NodeLikeFork<Node2, Node3, Node1>>) ;
     static_assert(std::is_same_v<decltype(NodeLikeMerge(NodeFork1{}, NodeFork2{})), NodeLikeFork<Node2, Node3, Node4>>);
     static_assert(std::is_same_v<decltype(NodeLikeMerge(NodeFork2{}, NodeFork1{})), NodeLikeFork<Node2, Node4, Node3>>);
-    static_assert(std::is_same_v<decltype(NodeLikeMerge(Either1{}, NodeFork1{})), NodeLikeFork<Either1, Node2, Node3>>);
+    static_assert(std::is_same_v<decltype(NodeLikeMerge(Either{}, NodeFork1{})), NodeLikeFork<Either, Node2, Node3>>);
+    static_assert(std::is_same_v<decltype(NodeLikeMerge(Either{}, Maybe{})), NodeLikeFork<Either, Maybe>>);
+    static_assert(std::is_same_v<decltype(NodeLikeMerge(Either{}, Either{})), Either>);
 }
